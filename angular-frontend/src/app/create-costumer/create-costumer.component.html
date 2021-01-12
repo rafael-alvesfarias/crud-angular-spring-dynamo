@@ -1,0 +1,25 @@
+<div class="col-md-8 offset-md-3">
+    <h3>Novo Cliente</h3>
+    <form (ngSubmit) = "onSubmit()">
+
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" id="company_name"
+                [(ngModel)]="costumer.company_name" name="company_name">
+        </div>
+        
+        <div class="form-group">
+            <label>Número do Documento</label>
+            <input type="text" class="form-control" id="company_document_number"
+                [(ngModel)]="costumer.company_document_number" name="company_document_number">
+        </div>
+        
+        <div class="form-group">
+            <label>Número do Telefone</label>
+            <input type="text" class="form-control" id="phone_number"
+                [(ngModel)]="costumer.phone_number" name="phone_number">
+        </div>
+
+        <button class="btn btn-success" type="submit">Salvar</button>
+    </form>
+</div>

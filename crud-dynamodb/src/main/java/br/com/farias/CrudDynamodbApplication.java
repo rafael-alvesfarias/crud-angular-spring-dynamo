@@ -18,7 +18,7 @@ public class CrudDynamodbApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/v1/costumers/*").allowedOrigins("http://localhost:4200");
+				registry.addMapping("/v1/costumers/*").allowedOrigins("http://localhost:4200").allowedMethods("*");
 			}
 		};
 	}

@@ -15,4 +15,16 @@ export class CostumerService {
   getCostumersList(): Observable<Costumer[]> {
     return this.httpClient.get<Costumer[]>(`${this.baseUrl}`);
   }
+
+  createCostumer(costumer: Costumer): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}`, costumer);
+  }
+
+  getCostumerByDocumentNumber(company_document_number: string): Observable<Costumer> {
+    return this.httpClient.get<Costumer>(`${this.baseUrl}/${company_document_number}`);
+  }
+
+  updateCostumer(company_document_number: string, costumer: Costumer): Observable<Object> {
+    return this.httpClient.put(`${this.baseUrl}/${company_document_number}`, costumer);
+  }
 }

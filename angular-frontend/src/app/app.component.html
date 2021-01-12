@@ -1,5 +1,22 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a routerLink="costumers" routerLinkActive="active" class="nav-link">Lista de Clientes</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="create-costumer" routerLinkActive="active" class="nav-link">Novo Cliente</a>
+        </li>
+    </ul>
+</nav>
+
 <h1 class="text-center"> {{title}} </h1>
 
 <div class="container">
-    <app-costumer-list></app-costumer-list>
+    <router-outlet></router-outlet>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <span></span>
+    </div>
+</footer>

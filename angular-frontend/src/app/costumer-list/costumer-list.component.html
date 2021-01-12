@@ -4,14 +4,16 @@
         <th>Nome</th>
         <th>Número do Documento</th>
         <th>Número do Telefone</th>
-        <th>Ativo</th>
+        <th>Ações</th>
     </thead>
     <tbody>
         <tr *ngFor = "let costumer of costumers">
             <td>{{ costumer.company_name }}</td>
             <td>{{ costumer.company_document_number }}</td>
             <td>{{ costumer.phone_number }}</td>
-            <td>{{ costumer.active }}</td>
+            <td>
+                <button (click)="updateCostumer(costumer.company_document_number)" class="btn btn-info">Editar</button>
+            </td>
         </tr>
     </tbody>
 </table>
