@@ -4,10 +4,13 @@ CRUD simples utilizando Angular 10 como frontend, Spring Boot e AWS DynamoDB com
 
 ## Build
 
-Requisitos: docker, docker-compose e aws-cli
+**Requisitos**: docker, docker-compose e aws-cli
 
-para build Local com Localstack execute os seguintes comandos:
- `
+Para build Local com Localstack execute os seguintes passos:
+
+* Execute os seguintes comandos no terminal:
+
+ ```sh
  docker-compose build
  
  docker-compose up
@@ -18,12 +21,13 @@ para build Local com Localstack execute os seguintes comandos:
  
  aws dynamodb create-table --cli-input-json file://crud-dynamodb/migration/customer_table.json --endpoint-url=http://localhost:4566
  
- `
- em seguida acesse o endpoint: http://localhost:9081
+ ```
+* Acesse o endpoint: http://localhost:9081
  
  
-OBS: para deploy do front no S3 da AWS executar os sequintes comandos na pasta angular-frontend:
+**OBS:** para deploy do front no S3 da AWS executar os sequintes comandos na pasta angular-frontend:
 
+ ```sh
 npm run build
 
 aws s3 sync dist/angular-frontend/ s3://crud-dynamodb-frontend
@@ -32,5 +36,5 @@ aws s3api put-bucket-policy --bucket crud-dynamodb-frontend --policy file://aws/
 
 aws s3 website s3://crud-dynamodb-frontend --index-document index.html
 
-
+```
 
