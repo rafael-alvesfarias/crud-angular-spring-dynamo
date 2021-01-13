@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CostumerService {
 
-  private baseUrl = "http://localhost:9080/v1/costumers/";
+  private baseUrl = "http://localhost:9080/v1/costumers";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,5 +26,9 @@ export class CostumerService {
 
   updateCostumer(company_document_number: string, costumer: Costumer): Observable<Object> {
     return this.httpClient.put(`${this.baseUrl}/${company_document_number}`, costumer);
+  }
+
+  deleteCostumer(company_document_number: string): Observable<Object> {
+    return this.httpClient.delete(`${this.baseUrl}/${company_document_number}`);
   }
 }

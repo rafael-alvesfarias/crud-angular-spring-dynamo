@@ -26,8 +26,19 @@ export class CostumerListComponent implements OnInit {
     })
   }
 
+  costumerDetails(company_document_number: string) {
+    this.router.navigate(['costumer-details', company_document_number]);
+  }
+
   updateCostumer(company_document_number: string) {
     this.router.navigate(['update-costumer', company_document_number]);
+  }
+
+  deleteCostumer(company_document_number: string) {
+    this.costumerService.deleteCostumer(company_document_number).subscribe(data => {
+      console.log(data);
+      this.getCostumers();
+    });
   }
 
 }

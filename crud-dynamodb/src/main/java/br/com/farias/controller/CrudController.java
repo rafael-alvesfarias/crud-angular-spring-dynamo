@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import br.com.farias.dto.CostumerDTO;
 import br.com.farias.model.Costumer;
 import br.com.farias.service.CostumerService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/v1")
 public class CrudController {
@@ -54,7 +56,7 @@ public class CrudController {
         return ResponseEntity.ok(costumerService.updateCostumer(companyDocumentNumber, costumerDTO));
     }
     
-    @DeleteMapping("/{companyDocumentNumber}")
+    @DeleteMapping("/costumers/{companyDocumentNumber}")
     public ResponseEntity<Costumer> disableCostumer(@PathVariable("companyDocumentNumber") String companyDocumentNumber) {
         return ResponseEntity.ok(costumerService.disableCostumer(companyDocumentNumber));
     }

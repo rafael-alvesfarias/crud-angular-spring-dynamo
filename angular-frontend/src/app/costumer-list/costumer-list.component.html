@@ -13,6 +13,10 @@
             <td>{{ costumer.phone_number }}</td>
             <td>
                 <button (click)="updateCostumer(costumer.company_document_number)" class="btn btn-info">Editar</button>
+                <button (click)="deleteCostumer(costumer.company_document_number)" class="btn btn-danger" 
+                    style="margin-left: 10px">Excluir</button>
+                    <button (click)="costumerDetails(costumer.company_document_number)" class="btn btn-info" 
+                    style="margin-left: 10px">Detalhe</button>
             </td>
         </tr>
     </tbody>

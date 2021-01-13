@@ -59,9 +59,9 @@ public class CostumerServiceImpl implements CostumerService {
 			throw new RuntimeException("There is no customer with this document number");
 		}
 
-		costumer.get().setActive(false);
+		costumerRepository.delete(costumer.get());
 
-		return costumerRepository.save(costumer.get());
+		return costumer.get();
 	}
 
 	@Override

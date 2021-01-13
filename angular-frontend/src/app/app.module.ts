@@ -7,13 +7,15 @@ import { CostumerListComponent } from './costumer-list/costumer-list.component';
 import { CreateCostumerComponent } from './create-costumer/create-costumer.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateCostumerComponent } from './update-costumer/update-costumer.component';
+import { CostumerDetailsComponent } from './costumer-details/costumer-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CostumerListComponent,
     CreateCostumerComponent,
-    UpdateCostumerComponent
+    UpdateCostumerComponent,
+    CostumerDetailsComponent
   ],
   imports: [
     BrowserModule,
