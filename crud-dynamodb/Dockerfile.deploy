@@ -1,0 +1,40 @@
+#### Stage 1: Build the application
+FROM openjdk:11-jdk-alpine as build
+
+# Set the current working directory inside the image
+WORKDIR /app
+
+# Copy maven executable to the image
+COPY mvnw .
+COPY .mvn .mvn
+
+# Copy the pom.xml file
+COPY pom.xml .
+
+# Build all the dependencies in preparation to go offline. 
+# This is a separate step so the dependencies will be cached unless 
+# the pom.xml file has changed.
+RUN ./mvnw dependency:go-offline -B
+
+# Copy the project source
+COPY src src
+
+# Package the application
+RUN ./mvnw package -DskipTests
+
+#### Stage 2: A minimal docker image with command to run the app 
+FROM openjdk:11-jre-alpine AS crud-dynamodb
+
+ARG DEPENDENCY=/app/target/dependency
+
+# Copy project dependencies from the build stage
+COPY --from=build /app/target/*.jar .
+
+#Create a new container from a linux base image that has the aws-cli installed
+FROM mesosphere/aws-cli
+
+#Using the alias defined for the first container, copy the contents of the build folder to this container
+COPY --from=build /app/target/*.jar .
+
+#Set the default command of this container to push the files from the working directory of this container to our s3 bucket 
+CMD ["s3", "sync", "./", "s3://crud-dynamodb-backend"] 

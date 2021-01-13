@@ -1,0 +1,41 @@
+version: '3.3'
+
+volumes:
+
+  localstack:
+
+services:
+
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 8080:8080
+      - 4566:4566
+    environment:
+      - DATA_DIR=/tmp/localstack/data
+      - DEBUG=1
+      - DEFAULT_REGION=ap-southeast-2
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - LAMBDA_EXECUTOR=docker-reuse
+      - PORT_WEB_UI=8080
+      - SERVICES=s3,dynamodb
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - localstack:/tmp/localstack/data
+      
+  crud-dynamodb-backend:
+    build: ./crud-dynamodb/.
+    depends_on:
+      - localstack
+    restart: always
+    ports:
+      - "9080:9080"
+      
+  crud-dynamodb-frontend:
+    build: ./angular-frontend/.
+    depends_on:
+      - localstack
+    restart: always
+    ports:
+      - "9081:9081"
+
