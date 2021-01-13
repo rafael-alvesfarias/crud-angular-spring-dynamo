@@ -15,10 +15,6 @@ Para build Local com Localstack execute os seguintes passos:
  
  docker-compose up
  
- aws --endpoint-url=http://localhost:4566 s3 mb s3://crud-dynamodb-backend
- 
- aws --endpoint-url=http://localhost:4566 s3 mb s3://crud-dynamodb-frontend
- 
  aws dynamodb create-table --cli-input-json file://crud-dynamodb/migration/customer_table.json --endpoint-url=http://localhost:4566
  
  ```
@@ -29,6 +25,8 @@ Para build Local com Localstack execute os seguintes passos:
 
  ```sh
 npm run build
+
+aws --endpoint-url=http://localhost:4566 s3 mb s3://crud-dynamodb-frontend
 
 aws s3 sync dist/angular-frontend/ s3://crud-dynamodb-frontend
 
